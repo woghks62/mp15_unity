@@ -9,12 +9,10 @@ public class ExhibitController : MonoBehaviour
     [SerializeField] private float _startAngle = 30;
 
     private Renderer _selfRenderer;
-
     private Renderer _spotRenderer;
-
     private float _angle;
 
-
+    private const string TAG = "Spot";
 
     private void Awake()
     {
@@ -27,13 +25,11 @@ public class ExhibitController : MonoBehaviour
         ActivateVisual();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         BindSpot();
     }
 
-    // Update is called once per frame
     void Update()
     {
         TurnExhibit();
@@ -50,11 +46,14 @@ public class ExhibitController : MonoBehaviour
         HideSpot();
     }
 
+
+
+
     void CacheComponents()
     {
         //
         _selfRenderer = GetComponent<Renderer>();
-        Debug.Log($"CacheComponents 메서드 {_selfRenderer}");
+        Debug.Log(_selfRenderer.name);
     }
 
     void InitAngle()
@@ -65,16 +64,17 @@ public class ExhibitController : MonoBehaviour
 
     void ActivateVisual()
     {
-        
-        _selfRenderer.enabled = _selfRenderer;
-        _selfRenderer.enabled = _baseRenderer;
-        Debug.Log($"{_selfRenderer}를 켰습니다");
-        Debug.Log($"{_baseRenderer}를 켰습니다");
+        _selfRenderer.enabled = true;
+        _baseRenderer.enabled = true;
+        Debug.Log("_selfRenderer, _baseRenderer 켰습니다");
     }
 
     void BindSpot()
     {
-        
+        GameObject gameobject = GameObject.FindWithTag(TAG);
+        _spotRenderer = gameobject.GetComponent<Renderer>();
+
+        Debug.Log(_spotRenderer.name);
     }
 
     void TurnExhibit()
@@ -84,8 +84,9 @@ public class ExhibitController : MonoBehaviour
 
     void DeactivateVisual()
     {
-        Debug.Log($"{_selfRenderer}를 껐습니다");
-        Debug.Log($"{_baseRenderer}를 껐습니다");
+        _selfRenderer.enabled = false;
+        _baseRenderer.enabled = false;
+        Debug.Log("_selfRenderer, _baseRenderer 껐습니다");
     }
 
     void ReportAngle()
@@ -95,6 +96,7 @@ public class ExhibitController : MonoBehaviour
 
     void HideSpot()
     {
-        Debug.Log($"{_spotRenderer}를 껐습니다");
+        _spotRenderer.enabled = false;
+        Debug.Log("_spotRenderer 껐습니다");
     }
 }
