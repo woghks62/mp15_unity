@@ -14,6 +14,7 @@ public class AxisMover : MonoBehaviour
     private void Awake()
     {
         CacheStart();
+        Debug.Log(_direction);
     }
 
     private void Update()
