@@ -8,8 +8,13 @@ public class UnitMovement : MonoBehaviour
     // 2. 목적지가 정해졌으면 그쪽으로 이동하기
     // 3. 목적지에 도착하면 목적지 해제하기
 
+    //public Vector3 Destination {  get; set; }
+    //public bool IsMoving {  get; set; }
+
     private Vector3 _destination;
     private bool _isMoving;
+
+
     [SerializeField] private float _moveSpeed;
 
     private void Update()
@@ -27,7 +32,7 @@ public class UnitMovement : MonoBehaviour
             _moveSpeed * Time.deltaTime
             );
 
-        if(Vector3.Distance(transform.position, _destination) <= 0.1f)
+        if(Vector3.Distance(transform.position, _destination) <= 1f)
         {
             _isMoving = false;
         }
