@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mouse : MonoBehaviour
+public class Mouse : MonoBehaviour, IChangeable
 {
     private Camera _cam;
 
@@ -17,7 +17,8 @@ public class Mouse : MonoBehaviour
     void Update()
     {
         RayShot();
-        MoveTarget();//
+        MoveTarget();
+        ChangeColor(); //
     }
 
     private void MoveTarget()
@@ -59,6 +60,24 @@ public class Mouse : MonoBehaviour
         {
             _target = null;
             return;
+        }
+    }
+
+
+    Renderer targetcolor;
+    public void ChangeColor()
+    {
+        if (_target == null) return;
+
+        Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (!hit.transform.CompareTag("Ground")) return;
+
+            targetcolor = _target.GetComponent<Renderer>();
+            targetcolor.material.color = Color.blue;
         }
     }
 }
