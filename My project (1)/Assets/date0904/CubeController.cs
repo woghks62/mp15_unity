@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeController : MonoBehaviour
+public class CubeController : MonoBehaviour, IDamageable
 {
     private Rigidbody _rigidbody;
 
@@ -18,17 +18,23 @@ public class CubeController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"{gameObject.name} : {collision.gameObject.name}랑 충돌했다");
+        //Debug.Log($"{gameObject.name} : {collision.gameObject.name}랑 충돌했다");
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log($"{gameObject.name} : {collision.gameObject.name}랑 붙어있음");
+        //Debug.Log($"{gameObject.name} : {collision.gameObject.name}랑 붙어있음");
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log($"{gameObject.name} : {collision.gameObject.name}랑 멀어짐");
+        //Debug.Log($"{gameObject.name} : {collision.gameObject.name}랑 멀어짐");
+    }
+
+
+    public void TakeDamage(float damage)
+    {
+        Debug.Log($"데미지 입음 : {damage}");
     }
 
 
