@@ -7,6 +7,7 @@ TagManager:
   - FarTarget
   - Spot
   - Monster
+  - Ground
   layers:
   - Default
   - TransparentFX
